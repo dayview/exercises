@@ -5,7 +5,6 @@ float area(float l, float w){
 }
 
 int main(){
-
     float length, width, height;
 
     printf("Enter length, width, and height: ");
