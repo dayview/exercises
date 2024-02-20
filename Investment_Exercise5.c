@@ -5,7 +5,7 @@ main()
 {
 	float investment, interestRate;
 	
-	getInvestment(&investment);
+	investment = getInvestment();
 
 	interestRate = getInterestRate(1);
 	investment = computeAndShowNewInvestmentTotal(interestRate,investment);

@@ -14,7 +14,7 @@ float getInterestRate(int monthNumber){
     return interestRate;
 }
 
-float computeAndShowNewInvestmentTotal(float investment, float interestRate){
+float computeAndShowNewInvestmentTotal(float interestRate, float investment){
     float newInvestmentTotal = investment + (investment * interestRate);
     printf("The new investment total is: %.2f\n", newInvestmentTotal);
     return newInvestmentTotal;
