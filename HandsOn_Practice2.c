@@ -56,14 +56,14 @@ void chargeEnergy(int *nCharge, int nDayWeather){
 void weekOperations(int *nCharge, int nWeather){
     // TODO: Write your code here
     int i;
-    for(i = 0; i < 5; i++){
+    for(i = 0; i < MAX_DAYS; i++){
         int dayWeather = nWeather % 10;
         nWeather /= 10;
 
-        consumeEnergy(nCharge, dayWeather);
-        chargeEnergy(*nCharge, i+1);
+        consumeEnergy(nCharge);
+        chargeEnergy(*nCharge, dayWeather);
 
-        printDayEnergy(*nCharge);
+        printDayEnergy(*nCharge, i+1);
     }
     
     // Do not modify the final print statement
