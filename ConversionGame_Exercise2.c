@@ -1,56 +1,51 @@
 #include <stdio.h>
 
 int main() {
-    float price_gold_1, price_gold_2;
-    int discount = 20; // Percentage discount (represented as an integer)
+    float goldPrice1, goldPrice2;
+    int discount = 20;
 
     printf("Enter the price of item 1 in ounces of gold: ");
-    scanf("%f", &price_gold_1);
+    scanf("%f", &goldPrice1);
 
     printf("Enter the price of item 2 in ounces of gold: ");
-    scanf("%f", &price_gold_2);
+    scanf("%f", &goldPrice2);
 
-    // Conversion rates (all stored in integers for brevity)
-    int silver_per_gold = 10;
-    int bronze_per_silver = 50;
-    int copper_per_bronze = 150;
+    int silverPerGold = 10;
+    int bronzePerSilver = 50;
+    int copperPerBronze = 150;
 
-    // Calculate prices in other metals for item 1
-    int price_silver_1 = price_gold_1 * silver_per_gold;
-    int price_bronze_1 = price_silver_1 * bronze_per_silver;
-    int price_copper_1 = price_bronze_1 * copper_per_bronze;
+    int silverPrice1 = goldPrice1 * silverPerGold;
+    int bronzePrice1 = silverPrice1 * bronzePerSilver;
+    int copperPrice1 = bronzePrice1 * copperPerBronze;
 
-    // Calculate prices in other metals for item 2
-    int price_silver_2 = price_gold_2 * silver_per_gold;
-    int price_bronze_2 = price_silver_2 * bronze_per_silver;
-    int price_copper_2 = price_bronze_2 * copper_per_bronze;
+    int silverPrice2 = goldPrice2 * silverPerGold;
+    int bronzePrice2 = silverPrice2 * bronzePerSilver;
+    int copperPrice2 = bronzePrice2 * copperPerBronze;
 
-    // Apply discount (avoiding floating-point calculations)
-    price_gold_1 = price_gold_1 * (100 - discount) / 100;
-    price_gold_2 = price_gold_2 * (100 - discount) / 100;
+    int goldPrice1 = goldPrice1 * (100 - discount) / 100;
+    int goldPrice2 = goldPrice2 * (100 - discount) / 100;
 
-    price_silver_1 = price_silver_1 * (100 - discount) / 100;
-    price_silver_2 = price_silver_2 * (100 - discount) / 100;
+    int silverPrice1 = silverPrice1 * (100 - discount) / 100;
+    int silverPrice2 = silverPrice2 * (100 - discount) / 100;
 
-    price_bronze_1 = price_bronze_1 * (100 - discount) / 100;
-    price_bronze_2 = price_bronze_2 * (100 - discount) / 100;
+    int bronzePrice1 = bronzePrice1 * (100 - discount) / 100;
+    int bronzePrice2 = bronzePrice2 * (100 - discount) / 100;
 
-    price_copper_1 = price_copper_1 * (100 - discount) / 100;
-    price_copper_2 = price_copper_2 * (100 - discount) / 100;
+    int copperPrice1 = copperPrice1 * (100 - discount) / 100;
+    int copperPrice2 = copperPrice2 * (100 - discount) / 100;
 
-    // Print original prices
     printf("\nOriginal Prices:\n");
     printf("Item 1: %d gold, %d silver, %d bronze, %d copper\n",
-           (int)price_gold_1, price_silver_1, price_bronze_1, price_copper_1);
+           (goldPrice1, silverPrice1, bronzePrice1, copperPrice1);
     printf("Item 2: %d gold, %d silver, %d bronze, %d copper\n",
-           (int)price_gold_2, price_silver_2, price_bronze_2, price_copper_2);
+           (goldPrice2, silverPrice2, bronzePrice2, copperPrice2);
 
     // Print discounted prices
     printf("\nDiscounted Prices:\n");
     printf("Item 1: %d gold, %d silver, %d bronze, %d copper\n",
-           (int)price_gold_1, price_silver_1, price_bronze_1, price_copper_1);
+           (goldPrice1, silverPrice1, bronzePrice1, copperPrice1);
     printf("Item 2: %d gold, %d silver, %d bronze, %d copper\n",
-           (int)price_gold_2, price_silver_2, price_bronze_2, price_copper_2);
+           (goldPrice2, silverPrice2, bronzePrice2, copperPrice2);
 
     return 0;
 }
