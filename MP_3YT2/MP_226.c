@@ -42,11 +42,20 @@ void displayBoard(){
     printf("---|---|---|---|---\n");
 }
 
-void printBoard(int a1, int a2, int a3, int a4, int a5,
-                int b1, int b2, int b3, int b4, int b5,
-                int c1, int c2, int c3, int c4, int c5,
-                int d1, int d2, int d3, int d4, int d5,
-                int e1, int e2, int e3, int e4, int e5){
+char getSymbol(int cell){
+
+    if(cell == 0){
+        return ' ';
+    } else if(cell == 1){
+        return 'X';
+    } else if(cell == 2){
+        return 'O';
+    } else {
+         return 'Y';
+    }
+}
+
+void printBoard(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int b4, int b5, int c1, int c2, int c3, int c4, int c5, int d1, int d2, int d3, int d4, int d5, int e1, int e2, int e3, int e4, int e5){
 
     printf("\n");
     printf(" %c %c %c %c %c\n", getSymbol(a1), getSymbol(a2), getSymbol(a3), getSymbol(a4), getSymbol(a5));
@@ -56,18 +65,6 @@ void printBoard(int a1, int a2, int a3, int a4, int a5,
     printf(" %c %c %c %c %c\n", getSymbol(e1), getSymbol(e2), getSymbol(e3), getSymbol(e4), getSymbol(e5));
     printf("\n");
 	
-    char getSymbol(int cell) {
-
-        if(cell == 0){
-            return ' ';
-        } else if(cell == 1){
-            return 'X';
-        } else if(cell == 2){
-            return 'O';
-        } else {
-            return 'Y';
-        }
-    }
 }
 
 int getMove(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int b4, int b5, int c1, int c2, int c3, int c4, int c5, int d1, int d2, int d3, int d4, int d5, int e1, int e2, int e3, int e4, int e5, int player){
