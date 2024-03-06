@@ -9,6 +9,7 @@ void displayStart(){
     printf("----------------------\n");
     printf("| [1] Two Players    |\n");
     printf("| [2] Three Players  |\n");
+    printf("| [3] Exit Game   |\n");
     printf("----------------------\n\n");
 
     printf("Your choice: ");
@@ -41,15 +42,61 @@ void displayBoard(){
     printf("---|---|---|---|---\n");
 }
 
-void printBoard(){
+void printBoard(int board){
 	// print board visualization
 	// use modulo to handle row/col printing
+
+    printf("\n");
+    for(int i = 0; i < 5; i++){
+        printf(" ");
+        for(int j = 0; j < 5; j++){
+            
+            int shift = (5 * i + j) * 2;
+            int isolateCell = 3 << shift;
+            int cell = (board & isolateCell) >> shift;
+
+            char symbol;
+            if(cell == 0){
+                symbol = ' ';
+            } else if(cell == 1){
+                symbol = 'X';
+            } else if(cell == 2){
+                symbol = 'O';
+            } else {
+                symbol = 'Y';
+
+                printf("%c", symbol);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 	
 }
 
-int getMove(){
+int getMove(int board, int player){
 	// Get and validate move choice
 	// Return data from 1-25 or A-Y
+
+    while(1){
+        printBoard(board);
+        printf("Player %d, enter your move (Row and Column): ", player);
+
+        int row, col;
+        scanf("%d %d", &row, &col);
+
+        if (row < 1 || row > 5 || col < 1 || col > 5){
+            printf("Invalid move. Please try again.\n");
+        } else {
+            int space = (row - 1) * 5 + (col - 1);
+            if (board & (1 << space)){
+                printf("Space already taken. Please try again.\n");
+            } else {
+                board = board | (1 << space);
+                return space;
+            }
+        }
+    }
 }
 
 void makeMove(int space){
