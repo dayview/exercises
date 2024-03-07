@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void displayStart(){
+int displayStart(){
     int nChoice;
 
     printf("Welcome to Tic-Tac-Toe!\n\n");
@@ -14,9 +14,11 @@ void displayStart(){
 
     printf("Your choice: ");
     scanf("%d", &nChoice);
+    
+    return nChoice;
 }
 
-void specialChoice(){
+int specialChoice(){
     int nChoice;
 
     printf("Would you like to play with special rules?\n");
@@ -27,6 +29,8 @@ void specialChoice(){
 
     printf("Your choice: ");
     scanf("%d", &nChoice);
+    
+    return nChoice;
 }
 
 void displayBoard(){
@@ -45,7 +49,7 @@ void displayBoard(){
 char getSymbol(int cell){
 
     if(cell == 0){
-        return ' ';
+        return '0';
     } else if(cell == 1){
         return 'X';
     } else if(cell == 2){
@@ -55,8 +59,13 @@ char getSymbol(int cell){
     }
 }
 
-void printBoard(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int b4, int b5, int c1, int c2, int c3, int c4, int c5, int d1, int d2, int d3, int d4, int d5, int e1, int e2, int e3, int e4, int e5){
-
+void printBoard(int a1, int a2, int a3, int a4, int a5, 
+				int b1, int b2, int b3, int b4, int b5, 
+				int c1, int c2, int c3, int c4, int c5, 
+				int d1, int d2, int d3, int d4, int d5, 
+				int e1, int e2, int e3, int e4, int e5){
+	printf("IN printBoard: a1 = %d", a1);
+	
     printf("\n");
     printf(" %c %c %c %c %c\n", getSymbol(a1), getSymbol(a2), getSymbol(a3), getSymbol(a4), getSymbol(a5));
     printf(" %c %c %c %c %c\n", getSymbol(b1), getSymbol(b2), getSymbol(b3), getSymbol(b4), getSymbol(b5));
@@ -67,12 +76,15 @@ void printBoard(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, 
 	
 }
 
-int getMove(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int b4, int b5, int c1, int c2, int c3, int c4, int c5, int d1, int d2, int d3, int d4, int d5, int e1, int e2, int e3, int e4, int e5, int player){
-	// Get and validate move choice
-	// Return data from 1-25 or A-Y
+int getMove(int a1, int a2, int a3, int a4, int a5, 
+			int b1, int b2, int b3, int b4, int b5, 
+			int c1, int c2, int c3, int c4, int c5, 
+			int d1, int d2, int d3, int d4, int d5, 
+			int e1, int e2, int e3, int e4, int e5, int player){
+
+//    printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
 
     while(1){
-        printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
         printf("Player %d, enter your move (Row and Column): ", player);
 
         int row, col;
@@ -163,22 +175,32 @@ int getMove(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int 
                 printf("Space already taken. Please try again.\n");
             } else {
                 *space = player;
+                printf("Player: %d\n", player);
                 return (row - 1) * 5 + col;
             }
         }
     }
 }
 
-int checkWin(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int b4, int b5, int c1, int c2, int c3, int c4, int c5, int d1, int d2, int d3, int d4, int d5, int e1, int e2, int e3, int e4, int e5){
-	// Check all possible win directions
-	// Return 0 if no win
-	// Return current player if they won
+int checkWin(int a1, int a2, int a3, int a4, int a5, 
+			int b1, int b2, int b3, int b4, int b5, 
+			int c1, int c2, int c3, int c4, int c5, 
+			int d1, int d2, int d3, int d4, int d5, 
+			int e1, int e2, int e3, int e4, int e5){
 
-    if ((a1 && a2 && a3 && a4 && a5) || (b1 && b2 && b3 && b4 && b5) || (c1 && c2 && c3 && c4 && c5) || (d1 && d2 && d3 && d4 && d5) || (e1 && e2 && e3 && e4 && e5)) {
+    if ((a1 && a2 && a3 && a4 && a5) || 
+		(b1 && b2 && b3 && b4 && b5) || 
+		(c1 && c2 && c3 && c4 && c5) || 
+		(d1 && d2 && d3 && d4 && d5) || 
+		(e1 && e2 && e3 && e4 && e5)) {
         return 1;
     }
 
-    if ((a1 && b1 && c1 && d1 && e1) || (a2 && b2 && c2 && d2 && e2) || (a3 && b3 && c3 && d3 && e3) || (a4 && b4 && c4 && d4 && e4) || (a5 && b5 && c5 && d5 && e5)) {
+    if ((a1 && b1 && c1 && d1 && e1) || 
+		(a2 && b2 && c2 && d2 && e2) || 
+		(a3 && b3 && c3 && d3 && e3) || 
+		(a4 && b4 && c4 && d4 && e4) || 
+		(a5 && b5 && c5 && d5 && e5)) {
         return 1;
     }
 
@@ -189,22 +211,35 @@ int checkWin(int a1, int a2, int a3, int a4, int a5, int b1, int b2, int b3, int
     return 0;
 }
 
+//void updateBoard(int a1, ..., int player, int move) {
+//	if move == space
+//        a1 = player
+//}
+
 int main(){
 
-int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
+int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, 
+	b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, 
+	c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, 
+	d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, 
+	e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
+	
     int player = 1;
 
-    displayStart();
-    specialChoice();
+    int nPlayersChoice = displayStart();
+    int nSpecialChoice = specialChoice();
+//    setup game based on nPlayerChoice and nSpecialChoice
     displayBoard();
     
     while(!checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
+    	printf("printBoard HERE");
+    	printf("%d", a1);
         printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
         int move = getMove(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, player);
-        player = 3 - player; // Switch player
+        // updateBoard(a1, a2, ..., player, move)
+        player = 3 - player;
     }
     
-    // Print final board and winner
     printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
     printf("Player %d wins!\n", 3 - player);
 }
