@@ -64,7 +64,6 @@ void printBoard(int a1, int a2, int a3, int a4, int a5,
 				int c1, int c2, int c3, int c4, int c5, 
 				int d1, int d2, int d3, int d4, int d5, 
 				int e1, int e2, int e3, int e4, int e5){
-	printf("IN printBoard: a1 = %d", a1);
 	
     printf("\n");
     printf(" %c %c %c %c %c\n", getSymbol(a1), getSymbol(a2), getSymbol(a3), getSymbol(a4), getSymbol(a5));
