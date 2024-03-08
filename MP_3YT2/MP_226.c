@@ -33,6 +33,28 @@ int specialChoice(){
     return nChoice;
 }
 
+void setupGame(int nPlayersChoice, int nSpecialChoice){
+
+    printf("\nSetting up the game...\n");
+
+    if(nPlayersChoice == 1){
+        printf("Two players will be playing.\n");
+    } else if(nPlayersChoice == 2){
+        printf("Three players will be playing.\n");
+    } else {
+        printf("Exiting game.\n");
+        exit(0);
+    }
+
+    if(nSpecialChoice == 1){
+        printf("Special rules will be used.\n");
+    } else {
+        printf("No special rules will be applied.\n");
+    }
+
+    printf("Game setup complete.\n\n");
+}
+
 void displayBoard(){
     printf("\n 1 | 2 | 3 | 4 | 5\n");
     printf("---|---|---|---|---\n");
@@ -227,11 +249,10 @@ int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0,
 
     int nPlayersChoice = displayStart();
     int nSpecialChoice = specialChoice();
-//    setup game based on nPlayerChoice and nSpecialChoice
+    setupGame(nPlayersChoice, nSpecialChoice);
     displayBoard();
     
     while(!checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
-    	printf("printBoard HERE");
     	printf("%d", a1);
         printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
         int move = getMove(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, player);
