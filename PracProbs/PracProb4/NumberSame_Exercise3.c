@@ -4,9 +4,11 @@ int main(){
 
     int num, prevNum, count = 0;
     int countCheck = 1;
-
+	
+	printf("Enter the first number: ");
     scanf("%d", &num);
     while (countCheck){
+    	printf("Enter the succeeding number: ");
         scanf("%d", &num);
         if (num == prevNum){
             count++;
