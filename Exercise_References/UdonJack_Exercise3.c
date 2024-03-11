@@ -45,10 +45,12 @@ int main(){
 
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 2: What's my usual routine when I wake up?\n");
@@ -70,10 +72,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 3: What's my favorite ice cream flavor?\n");
@@ -95,10 +99,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 4: What's my favorite card game?'\n");
@@ -120,10 +126,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 5: Who's my favorite character in Honkai: Star Rail?\n");
@@ -145,10 +153,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 6: What's the name of my current phone?\n");
@@ -170,10 +180,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 7: Who do I mainly play in League of Legends?\n");
@@ -195,10 +207,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 8: What's my favorite subject?\n");
@@ -220,10 +234,12 @@ int main(){
 		
 		if (mistakes >= 4){
 			continueGame = 0;
-				if (continueGame == 0)
-					printf("\n\nYour current score: %d", score);
-					printf("\nYour current mistakes: %d", mistakes);
-					printf("\nChances left: %d\n", 4 - mistakes);
+		}
+
+		if (continueGame == 0){
+			printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+			printf("\nChances left: %d\n", 4 - mistakes);
 		}
 	}
 
