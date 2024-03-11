@@ -21,11 +21,13 @@ int main(){
 	int firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, sixthChoice, seventhChoice, eighthChoice;
 	int score = 0;
 	int mistakes = 0;
-	int continueGame = 1;
+	int gameStatus = 1;
 	
 	gameStart();
 	
-	while(mistakes < 4 && continueGame == 1){
+	while (gameStatus == 1 && mistakes < 4) {
+
+		// Q1
 		printf("\nQuestion 1: What is my favorite MOBILE gacha game?\n");
 		printf("1. FE Heroes\n2. Project Sekai\n3. FGO");
 		printf("\nAnswer: ");
@@ -43,16 +45,11 @@ int main(){
 			mistakes++;
 		}
 
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
-			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
-		}
+		printf("\n\nYour current score: %d", score);
+		printf("\nYour current mistakes: %d", mistakes);
+		printf("\nChances left: %d\n", 4 - mistakes);
 		
+		//Q2
 		printf("\nQuestion 2: What's my usual routine when I wake up?\n");
 		printf("1. Facebook\n2. Messenger\n3. TikTok");
 		printf("\nAnswer: ");
@@ -70,16 +67,11 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
-			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
-		}
+		printf("\n\nYour current score: %d", score);
+		printf("\nYour current mistakes: %d", mistakes);
+		printf("\nChances left: %d\n", 4 - mistakes);
 		
+		// Q3
 		printf("\nQuestion 3: What's my favorite ice cream flavor?\n");
 		printf("1. Chocolate\n2. Mint Chip\n3. Pistachio");
 		printf("\nAnswer: ");
@@ -97,17 +89,12 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
-			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
-		}
+		printf("\n\nYour current score: %d", score);
+		printf("\nYour current mistakes: %d", mistakes);
+		printf("\nChances left: %d\n", 4 - mistakes);
 		
-		printf("\nQuestion 4: What's my favorite card game?'\n");
+		// Q4
+		printf("\nQuestion 4: What's my favorite card game?\n");
 		printf("1. Magic: The Gathering\n2. Hearthstone\n3. LoR");
 		printf("\nAnswer: ");
 		scanf("%d", &fourthChoice);
@@ -124,14 +111,12 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
+		if (mistakes == 4){
+    		gameStatus = 0;
+		} else {
+    		printf("\n\nYour current score: %d", score);
 			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
+    		printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
 		printf("\nQuestion 5: Who's my favorite character in Honkai: Star Rail?\n");
@@ -151,16 +136,15 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
+		if (mistakes == 4){
+    		gameStatus = 0;
+		} else {
+    		printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+    		printf("\nChances left: %d\n", 4 - mistakes);
 		}
 
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
-			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
-		}
-		
+		// Q6
 		printf("\nQuestion 6: What's the name of my current phone?\n");
 		printf("1. Redmi Note 10\n2. Nothing Phone 2\n3. iPhone 13");
 		printf("\nAnswer: ");
@@ -178,16 +162,15 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
+		if (mistakes == 4){
+    		gameStatus = 0;
+		} else {
+    		printf("\n\nYour current score: %d", score);
 			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
+    		printf("\nChances left: %d\n", 4 - mistakes);
 		}
 		
+		// Q7
 		printf("\nQuestion 7: Who do I mainly play in League of Legends?\n");
 		printf("1. Lee Sin\n2. Janna\n3. Jhin");
 		printf("\nAnswer: ");
@@ -205,16 +188,15 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
+		if (mistakes == 4){
+    		gameStatus = 0;
+		} else {
+    		printf("\n\nYour current score: %d", score);
+			printf("\nYour current mistakes: %d", mistakes);
+    		printf("\nChances left: %d\n", 4 - mistakes);
 		}
 
-		if (continueGame == 0){
-			printf("\n\nYour current score: %d", score);
-			printf("\nYour current mistakes: %d", mistakes);
-			printf("\nChances left: %d\n", 4 - mistakes);
-		}
-		
+		// Q8
 		printf("\nQuestion 8: What's my favorite subject?\n");
 		printf("1. Programming\n2. Metaphysics\n3. Philosophy");
 		printf("\nAnswer: ");
@@ -232,11 +214,13 @@ int main(){
 			mistakes++;
 		}
 		
-		if (mistakes >= 4){
-			continueGame = 0;
-		}
-
-		if (continueGame == 0){
+		if (mistakes == 4){
+			if (gameStatus == 1){
+				gameStatus = 0;
+			} else {
+				gameStatus = 1;
+			}
+		} else {
 			printf("\n\nYour current score: %d", score);
 			printf("\nYour current mistakes: %d", mistakes);
 			printf("\nChances left: %d\n", 4 - mistakes);
