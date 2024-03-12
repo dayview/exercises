@@ -9,7 +9,7 @@ int displayStart(){
     printf("----------------------\n");
     printf("| [1] Two Players    |\n");
     printf("| [2] Three Players  |\n");
-    printf("| [3] Exit Game   |\n");
+    printf("| [3] Exit Game      |\n");
     printf("----------------------\n\n");
 
     printf("Your choice: ");
@@ -237,6 +237,10 @@ int checkWin(int a1, int a2, int a3, int a4, int a5,
 //        a1 = player
 //}
 
+void endProgram(){
+    int isRunning = 0;
+}
+
 int main(){
 
 int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, 
@@ -245,6 +249,7 @@ int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0,
 	d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, 
 	e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
 	
+    int isRunning = 1;
     int player = 1;
 
     int nPlayersChoice = displayStart();
@@ -252,7 +257,7 @@ int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0,
     setupGame(nPlayersChoice, nSpecialChoice);
     displayBoard();
     
-    while(!checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
+    while(isRunning && !checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
     	printf("%d", a1);
         printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
         int move = getMove(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, player);
