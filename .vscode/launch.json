@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Meire/Documents/Prog/Exercises/exercises/Exercise_References",
-      "program": "c:/Users/Meire/Documents/Prog/Exercises/exercises/Exercise_References/build/Debug/outDebug",
+      "cwd": "c:/Users/Meire/Documents/Prog/Exercises/exercises/MP_3YT2",
+      "program": "c:/Users/Meire/Documents/Prog/Exercises/exercises/MP_3YT2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -43,8 +43,10 @@ void setupGame(int nPlayersChoice, int nSpecialChoice){
         printf("Three players will be playing.\n");
     } else {
         printf("Exiting game.\n");
-        exit(0);
+        return -1;
     }
+
+    return 0;
 
     if(nSpecialChoice == 1){
         printf("Special rules will be used.\n");
@@ -251,7 +253,7 @@ int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0,
 	
     int isRunning = 1;
     int player = 1;
-
+    
     int nPlayersChoice = displayStart();
     int nSpecialChoice = specialChoice();
     setupGame(nPlayersChoice, nSpecialChoice);
