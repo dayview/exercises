@@ -109,7 +109,72 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
                 case 2:
                     space = a2;
                     break;
-                // ... (cases for other spaces)
+                case 3:
+                    space = a3;
+                    break;
+                case 4:
+                    space = a4;
+                    break;
+                case 5:
+                    space = a5;
+                    break;
+                case 6:
+                    space = b1;
+                    break;
+                case 7:
+                    space = b2;
+                    break;
+                case 8:
+                    space = b3;
+                    break;
+                case 9:
+                    space = b4;
+                    break;
+                case 10:
+                    space = b5;
+                    break;
+                case 11:
+                    space = c1;
+                    break;
+                case 12:
+                    space = c2;
+                    break;
+                case 13:
+                    space = c3;
+                    break;
+                case 14:
+                    space = c4;
+                    break;
+                case 15:
+                    space = c5;
+                    break;
+                case 16:
+                    space = d1;
+                    break;
+                case 17:
+                    space = d2;
+                    break;
+                case 18:
+                    space = d3;
+                    break;
+                case 19:
+                    space = d4;
+                    break;
+                case 20:
+                    space = d5;
+                    break;
+                case 21:
+                    space = e1;
+                    break;
+                case 22:
+                    space = e2;
+                    break;
+                case 23:
+                    space = e3;
+                    break;
+                case 24:
+                    space = e4;
+                    break;
                 case 25:
                     space = e5;
                     break;
