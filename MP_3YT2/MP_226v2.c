@@ -200,33 +200,54 @@ int checkWin(int a1, int a2, int a3, int a4, int a5,
 
     // Check rows
     player = a1;
-    if (player != 0 && player == a2 && player == a3 && player == a4 && player == a5) return player;
+    if (player != 0 && player == a2 && player == a3 && player == a4 && player == a5) 
+    return player;
+
     player = b1;
-    if (player != 0 && player == b2 && player == b3 && player == b4 && player == b5) return player;
+    if (player != 0 && player == b2 && player == b3 && player == b4 && player == b5) 
+    return player;
+
     player = c1;
-    if (player != 0 && player == c2 && player == c3 && player == c4 && player == c5) return player;
+    if (player != 0 && player == c2 && player == c3 && player == c4 && player == c5) 
+    return player;
+
     player = d1;
-    if (player != 0 && player == d2 && player == d3 && player == d4 && player == d5) return player;
+    if (player != 0 && player == d2 && player == d3 && player == d4 && player == d5) 
+    return player;
+
     player = e1;
-    if (player != 0 && player == e2 && player == e3 && player == e4 && player == e5) return player;
+    if (player != 0 && player == e2 && player == e3 && player == e4 && player == e5) 
+    return player;
 
     // Check columns
     player = a1;
-    if (player != 0 && player == b1 && player == c1 && player == d1 && player == e1) return player;
+    if (player != 0 && player == b1 && player == c1 && player == d1 && player == e1)
+    return player;
+
     player = a2;
-    if (player != 0 && player == b2 && player == c2 && player == d2 && player == e2) return player;
+    if (player != 0 && player == b2 && player == c2 && player == d2 && player == e2)
+    return player;
+
     player = a3;
-    if (player != 0 && player == b3 && player == c3 && player == d3 && player == e3) return player;
+    if (player != 0 && player == b3 && player == c3 && player == d3 && player == e3)
+    return player;
+
     player = a4;
-    if (player != 0 && player == b4 && player == c4 && player == d4 && player == e4) return player;
+    if (player != 0 && player == b4 && player == c4 && player == d4 && player == e4)
+    return player;
+
     player = a5;
-    if (player != 0 && player == b5 && player == c5 && player == d5 && player == e5) return player;
+    if (player != 0 && player == b5 && player == c5 && player == d5 && player == e5)
+    return player;
 
     // Check diagonals
     player = a1;
-    if (player != 0 && player == b2 && player == c3 && player == d4 && player == e5) return player;
+    if (player != 0 && player == b2 && player == c3 && player == d4 && player == e5)
+    return player;
+    
     player = a5;
-    if (player != 0 && player == b4 && player == c3 && player == d2 && player == e1) return player;
+    if (player != 0 && player == b4 && player == c3 && player == d2 && player == e1) 
+    return player;
 
     return 0;
 }
