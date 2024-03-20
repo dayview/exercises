@@ -45,29 +45,27 @@ int demeritv2(int numOffenses, int minDemeritPoints){
     return totalDemeritPoints;
 }
 
-int demeritv3(int currentPlayerMerit, int playerOffense, int minDemeritPoints, int repeatConsequence, int playerType){ //you can change parameter names
-	
+int demeritv3(int currentPlayerMerit, int playerOffense, int minDemeritPoints, int repeatConsequence, int playerType){
     int totalDemeritPoints = 0;
     int prevPoints = minDemeritPoints;
 
-    for (int i = 1; i <= playerOffense; i++){
-        if (i == 1){
+    for (int i = 1; i <= playerOffense; i++) {
+        if (i == 1) {
             totalDemeritPoints += minDemeritPoints;
         } else {
             int repeaterPoints;
-            if (playerType == 1){
+            if (playerType == 1) {
                 repeaterPoints = repeatConsequence;
             } else {
                 repeaterPoints = repeatConsequence * (i - 1);
             }
-
-            totalDemeritPoints += prevPoints + repeaterPoints;
-            prevPoints += repeaterPoints;
+            totalDemeritPoints = prevPoints + repeaterPoints;
+            prevPoints = totalDemeritPoints;
         }
 
         currentPlayerMerit -= totalDemeritPoints;
 
-        if (currentPlayerMerit < 0){
+        if (currentPlayerMerit < 0) {
             return currentPlayerMerit;
         }
     }
