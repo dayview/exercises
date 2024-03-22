@@ -1,4 +1,4 @@
-int demeritv1(int numOffenses, int minDemeritPoints, int repeatersConsequence){ 
+int calculateDemeritPointsV1(int numOffenses, int minDemeritPoints, int repeatersConsequence){ 
 	
 	int totalDemeritPoints = 0;
 	
@@ -13,7 +13,7 @@ int demeritv1(int numOffenses, int minDemeritPoints, int repeatersConsequence){
 	return totalDemeritPoints;	
 }
 
-int demeritv2(int numOffenses, int minDemeritPoints){
+int calculateDemeritPointsV2(int numOffenses, int minDemeritPoints){
 
     int totalDemeritPoints = 0;
     int prevPoints = minDemeritPoints;
