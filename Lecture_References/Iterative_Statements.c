@@ -102,7 +102,7 @@ int main(){
 
     return 0;
 } // a while loop program that reads a list of numbers entered by the user, stopping when the user enters -1
-// then calculates the average of the positive numbers entered
+// then calculates the avecerage of the positive numbers entered
 
 int main(){
     int num1, num2, temp;
