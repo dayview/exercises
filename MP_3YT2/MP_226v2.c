@@ -14,10 +14,6 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
     printf("Your choice: ");
     scanf("%d", nPlayersChoice);
 
-    if (*nPlayersChoice != 1 && *nPlayersChoice != 2) {
-        printf("Exiting game.\n");
-    }
-
     printf("Would you like to play with special rules?\n");
     printf("----------------------\n");
     printf("| [1] Yes            |\n");
@@ -307,12 +303,12 @@ int main(){
                      &c1, &c2, &c3, &c4, &c5, 
                      &d1, &d2, &d3, &d4, &d5, 
                      &e1, &e2, &e3, &e4, &e5);
-        int move = getMove(&player, &nPlayersChoice, &nSpecialChoice, 
-                           &a1, &a2, &a3, &a4, &a5, 
+        int move = getMove(&a1, &a2, &a3, &a4, &a5, 
                            &b1, &b2, &b3, &b4, &b5, 
                            &c1, &c2, &c3, &c4, &c5, 
                            &d1, &d2, &d3, &d4, &d5, 
-                           &e1, &e2, &e3, &e4, &e5);
+                           &e1, &e2, &e3, &e4, &e5,
+                           player, nPlayersChoice, nSpecialChoice);
         updateBoard(&move, player);
         player = (player % nPlayersChoice) + 1;
 
@@ -327,6 +323,5 @@ int main(){
                                 printf("Player %d wins!\n", winner);
                             }
     }
-    printf("Player %d wins!\n", 4 - player);
     return 0;
 }
