@@ -16,7 +16,6 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
 
     if (*nPlayersChoice != 1 && *nPlayersChoice != 2) {
         printf("Exiting game.\n");
-        return 0;
     }
 
     printf("Would you like to play with special rules?\n");
@@ -46,20 +45,6 @@ void setupGame(int nPlayersChoice, int nSpecialChoice){
     printf("Game setup complete.\n\n");
 }
 
-void displayBoard(){
-
-    printf("\n A | B | C | D | E\n");
-    printf("1 %c|%c|%c|%c|%c\n", getSymbol(a1), getSymbol(a2), getSymbol(a3), getSymbol(a4), getSymbol(a5));
-    printf(" 6 | 7 | 8 | 9 | 10\n");
-    printf("2 %c|%c|%c|%c|%c\n", getSymbol(b1), getSymbol(b2), getSymbol(b3), getSymbol(b4), getSymbol(b5));
-    printf(" 11| 12| 13| 14| 15\n");
-    printf("3 %c|%c|%c|%c|%c\n", getSymbol(c1), getSymbol(c2), getSymbol(c3), getSymbol(c4), getSymbol(c5));
-    printf(" 16| 17| 18| 19| 20\n");
-    printf("4 %c|%c|%c|%c|%c\n", getSymbol(d1), getSymbol(d2), getSymbol(d3), getSymbol(d4), getSymbol(d5));
-    printf(" 21| 22| 23| 24| 25\n");
-    printf("5 %c|%c|%c|%c|%c\n", getSymbol(e1), getSymbol(e2), getSymbol(e3), getSymbol(e4), getSymbol(e5));
-}
-
 char getSymbol(int cell){
     if (cell == 0) {
         return ' ';
@@ -72,7 +57,30 @@ char getSymbol(int cell){
     }
 }
 
-int getMove(int player, int nPlayersChoice, int nSpecialChoice){
+void displayBoard(int *a1, int *a2, int *a3, int *a4, int *a5,
+                int *b1, int *b2, int *b3, int *b4, int *b5,
+                int *c1, int *c2, int *c3, int *c4, int *c5,
+                int *d1, int *d2, int *d3, int *d4, int *d5,
+                int *e1, int *e2, int *e3, int *e4, int *e5){
+
+    printf("\n A | B | C | D | E\n");
+    printf("1  %c| %c| %c| %c| %c\n", getSymbol(*a1), getSymbol(*a2), getSymbol(*a3), getSymbol(*a4), getSymbol(*a5));
+    printf(" 6 | 7 | 8 | 9 | 10\n");
+    printf("2  %c| %c| %c| %c| %c\n", getSymbol(*b1), getSymbol(*b2), getSymbol(*b3), getSymbol(*b4), getSymbol(*b5));
+    printf(" 11| 12| 13| 14| 15\n");
+    printf("3  %c| %c| %c| %c| %c\n", getSymbol(*c1), getSymbol(*c2), getSymbol(*c3), getSymbol(*c4), getSymbol(*c5));
+    printf(" 16| 17| 18| 19| 20\n");
+    printf("4  %c| %c| %c| %c| %c\n", getSymbol(*d1), getSymbol(*d2), getSymbol(*d3), getSymbol(*d4), getSymbol(*d5));
+    printf(" 21| 22| 23| 24| 25\n");
+    printf("5  %c| %c| %c| %c| %c\n", getSymbol(*e1), getSymbol(*e2), getSymbol(*e3), getSymbol(*e4), getSymbol(*e5));
+}
+
+int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
+            int *b1, int *b2, int *b3, int *b4, int *b5,
+            int *c1, int *c2, int *c3, int *c4, int *c5,
+            int *d1, int *d2, int *d3, int *d4, int *d5,
+            int *e1, int *e2, int *e3, int *e4, int *e5,
+            int player, int nPlayersChoice, int nSpecialChoice){
                 
     char row, col;
     int rowNum, colNum;
@@ -105,94 +113,94 @@ int getMove(int player, int nPlayersChoice, int nSpecialChoice){
                 case 1:
                     switch (colNum){
                         case 1:
-                            space = &a1;
+                            space = a1;
                             break;
                         case 2:
-                            space = %a2;
+                            space = a2;
                             break;
                         case 3:
-                            space = &a3;
+                            space = a3;
                             break;
                         case 4:
-                            space = &a4;
+                            space = a4;
                             break;
                         case 5:
-                            space = &a5;
+                            space = a5;
                             break;
                     }
                     break;
                 case 2:
                     switch (colNum){
                         case 1:
-                            space = &b1;
+                            space = b1;
                             break;
                         case 2:
-                            space = &b2;
+                            space = b2;
                             break;
                         case 3:
-                            space = &b3;
+                            space = b3;
                             break;
                         case 4:
-                            space = &b4;
+                            space = b4;
                             break;
                         case 5:
-                            space = &b5;
+                            space = b5;
                             break;
                     }
                     break;
                 case 3:
                     switch (colNum){
                         case 1:
-                            space = &c1;
+                            space = c1;
                             break;
                         case 2:
-                            space = &c2;
+                            space = c2;
                             break;
                         case 3:
-                            space = &c3;
+                            space = c3;
                             break;
                         case 4:
-                            space = &c4;
+                            space = c4;
                             break;
                         case 5:
-                            space = &c5;
+                            space = c5;
                             break;
                     }
                     break;
                 case 4:
                     switch (colNum){
                         case 1:
-                            space = &d1;
+                            space = d1;
                             break;
                         case 2:
-                            space = &d2;
+                            space = d2;
                             break;
                         case 3:
-                            space = &d3;
+                            space = d3;
                             break;
                         case 4:
-                            space = &d4;
+                            space = d4;
                             break;
                         case 5:
-                            space = &d5;
+                            space = d5;
                             break;
                     }
                 case 5:
                     switch (colNum){
                         case 1:
-                            space = &e1;
+                            space = e1;
                             break;
                         case 2:
-                            space = &e2;
+                            space = e2;
                             break;
                         case 3:
-                            space = &e3;
+                            space = e3;
                             break;
                         case 4:
-                            space = &e4;
+                            space = e4;
                             break;
                         case 5:
-                            space = &e5;
+                            space = e5;
                             break;
                     }
                     break;
@@ -286,15 +294,22 @@ int main(){
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
 
-    while (isRunning && !checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
-        displayBoard();
-        int move = getMove(&a1, &a2, &a3, &a4, &a5, &b1, &b2, &b3, &b4, &b5, &c1, &c2, &c3, &c4, &c5, &d1, &d2, &d3, &d4, &d5, &e1, &e2, &e3, &e4, &e5, player);
+    while (!checkWin(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5)){
+        displayBoard(&a1, &a2, &a3, &a4, &a5, 
+                    &b1, &b2, &b3, &b4, &b5, 
+                    &c1, &c2, &c3, &c4, &c5, 
+                    &d1, &d2, &d3, &d4, &d5, 
+                    &e1, &e2, &e3, &e4, &e5);
+        int move = getMove(&player, &nPlayersChoice, &nSpecialChoice, &a1, &a2, &a3, &a4, &a5, &b1, &b2, &b3, &b4, &b5, &c1, &c2, &c3, &c4, &c5, &d1, &d2, &d3, &d4, &d5, &e1, &e2, &e3, &e4, &e5);
         updateBoard(&move, player);
         player = 4 - player;
     }
 
-    printBoard(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5, d1, d2, d3, d4, d5, e1, e2, e3, e4, e5);
+    displayBoard(&a1, &a2, &a3, &a4, &a5, 
+                &b1, &b2, &b3, &b4, &b5, 
+                &c1, &c2, &c3, &c4, &c5, 
+                &d1, &d2, &d3, &d4, &d5, 
+                &e1, &e2, &e3, &e4, &e5);
     printf("Player %d wins!\n", 4 - player);
-    endProgram();
     return 0;
 }
