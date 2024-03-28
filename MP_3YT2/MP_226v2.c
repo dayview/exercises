@@ -14,7 +14,7 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
 
     if (*nPlayersChoice != 1 && *nPlayersChoice != 2) {
         printf("Exiting game.\n");
-        exit(0);
+        return 0;
     }
 
     printf("Would you like to play with special rules?\n");
