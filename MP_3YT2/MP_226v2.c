@@ -275,6 +275,13 @@ int checkWin(int a1, int a2, int a3, int a4, int a5,
     if (player != 0 && player == b4 && player == c3 && player == d2 && player == e1) 
     return player;
 
+    if (a1 != 0 && a2 != 0 && a3 != 0 && a4 != 0 && a5 != 0 && 
+        b1 != 0 && b2 != 0 && b3 != 0 && b4 != 0 && b5 != 0 && 
+        c1 != 0 && c2 != 0 && c3 != 0 && c4 != 0 && c5 != 0 && 
+        d1 != 0 && d2 != 0 && d3 != 0 && d4 != 0 && d5 != 0 && 
+        e1 != 0 && e2 != 0 && e3 != 0 && e4 != 0 && e5 != 0){
+            return -1;
+        }
     return 0;
 }
 
@@ -289,7 +296,7 @@ int main(){
         c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, 
         d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, 
         e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
-    int player = 1, winner = 0;
+    int player = 1;
 
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
@@ -302,7 +309,7 @@ int main(){
                     &e1, &e2, &e3, &e4, &e5);
         int move = getMove(&player, &nPlayersChoice, &nSpecialChoice, &a1, &a2, &a3, &a4, &a5, &b1, &b2, &b3, &b4, &b5, &c1, &c2, &c3, &c4, &c5, &d1, &d2, &d3, &d4, &d5, &e1, &e2, &e3, &e4, &e5);
         updateBoard(&move, player);
-        player = 4 - player;
+        player = (player % nPlayersChoice) + 1;
     }
 
     displayBoard(&a1, &a2, &a3, &a4, &a5, 
