@@ -90,14 +90,12 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             rowNum = row - 'A' + 1;
         } else {
             printf("Invalid row. Please try again.\n");
-            continue;
         }
 
-        if (col >= '1' && col <= '5'){
+        if (rowNum > 0 && col >= '1' && col <= '5'){
             colNum = col - '0';
         } else {
             printf("Invalid move. Please try again.\n");
-            continue;
         }
 
         if (rowNum < 1 || rowNum > BOARD_SIZE || colNum < 1 || colNum > BOARD_SIZE){
@@ -351,7 +349,9 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
             printf("Column %d erased successfully.\n", col);
         } else {
             printf("Invalid column. Please try again.\n");
-        } else if (option == 3){
+        } 
+    }
+    else if (option == 3){
             *a1 = 0;
             *a5 = 0;
             *e1 = 0;
@@ -441,7 +441,7 @@ void updateBoard(int *space, int player){
 }
 
 int main(){
-    int nPlayersChoice, nSpecialChoice;
+    int nPlayersChoice, nSpecialChoice;;
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, 
         b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, 
         c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, 
@@ -449,6 +449,7 @@ int main(){
         e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
     int player = 1, winner = 0;
     int gameEnded = 0;
+    int eraseSpaceUsed = 0;
 
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
@@ -464,7 +465,7 @@ int main(){
                            &c1, &c2, &c3, &c4, &c5, 
                            &d1, &d2, &d3, &d4, &d5, 
                            &e1, &e2, &e3, &e4, &e5,
-                           player);
+                           player, &eraseSpaceUsed);
         updateBoard(&move, player);
         player = (player % nPlayersChoice) + 1;
 
