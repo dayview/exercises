@@ -210,6 +210,113 @@ int getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
     }
 }
 
+int *findSpacePointer(int *a1, int *a2, int *a3, int *a4, int *a5,
+                      int *b1, int *b2, int *b3, int *b4, int *b5,
+                      int *c1, int *c2, int *c3, int *c4, int *c5,
+                      int *d1, int *d2, int *d3, int *d4, int *d5,
+                      int *e1, int *e2, int *e3, int *e4, int *e5,
+                      int row, int col){
+    int *space = NULL;
+    switch (row){
+        case 1:
+            switch (col){
+                case 1:
+                    space = a1;
+                    break;
+                case 2:
+                    space = a2;
+                    break;
+                case 3:
+                    space = a3;
+                    break;
+                case 4:
+                    space = a4;
+                    break;
+                case 5:
+                    space = a5;
+                    break;
+            }
+            break;
+        case 2:
+            switch (col){
+                case 1:
+                    space = b1;
+                    break;
+                case 2:
+                    space = b2;
+                    break;
+                case 3:
+                    space = b3;
+                    break;
+                case 4:
+                    space = b4;
+                    break;
+                case 5:
+                    space = b5;
+                    break;
+            }
+            break;
+        case 3:
+            switch (col){
+                case 1:
+                    space = c1;
+                    break;
+                case 2:
+                    space = c2;
+                    break;
+                case 3:
+                    space = c3;
+                    break;
+                case 4:
+                    space = c4;
+                    break;
+                case 5:
+                    space = c5;
+                    break;
+            }
+            break;
+        case 4:
+            switch (col){
+                case 1:
+                    space = d1;
+                    break;
+                case 2:
+                    space = d2;
+                    break;
+                case 3:
+                    space = d3;
+                    break;
+                case 4:
+                    space = d4;
+                    break;
+                case 5:
+                    space = d5;
+                    break;
+            }
+            break;
+        case 5:
+            switch (col){
+                case 1:
+                    space = e1;
+                    break;
+                case 2:
+                    space = e2;
+                    break;
+                case 3:
+                    space = e3;
+                    break;
+                case 4:
+                    space = e4;
+                    break;
+                case 5:
+                    space = e5;
+                    break;
+            }
+            break;
+    }
+    return space;
+}
+
 void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                           int *b1, int *b2, int *b3, int *b4, int *b5,
                           int *c1, int *c2, int *c3, int *c4, int *c5,
@@ -233,9 +340,12 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
         col = colChar - '0';
 
         if (row >= 1 && row <= BOARD_SIZE && col >= 1 && col <= BOARD_SIZE) {
-            int *space = NULL;
-            // Find the corresponding pointer to the space
-            // (similar logic as in the getMove function)
+            int *space = findSpacePointer(a1, a2, a3, a4, a5,
+                                          b1, b2, b3, b4, b5,
+                                          c1, c2, c3, c4, c5,
+                                          d1, d2, d3, d4, d5,
+                                          e1, e2, e3, e4, e5,
+                                          row, col);
 
             if (*space != 0 && *space != player) {
                 *space = 0;
@@ -456,7 +566,7 @@ int main(){
                                  &d1, &d2, &d3, &d4, &d5, 
                                  &e1, &e2, &e3, &e4, &e5, player);
         updateBoard(&move, player);
-        player = (player % (nPlayersChoice - 1)) + 1;
+        player = (player % nPlayersChoice - 1) + 1;
 
         winner = checkWin(a1, a2, a3, a4, a5, 
                           b1, b2, b3, b4, b5, 
