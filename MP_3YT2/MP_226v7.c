@@ -130,6 +130,12 @@ void displayStart(int *numPlayers, int *useSpecialRules){
     		printf("----------------------\n\n");
     		printf("Your choice: ");
     		scanf("%d", useSpecialRules);
+    		
+    		while (*useSpecialRules != 1 && *useSpecialRules != 2){
+    			printf("Invalid input. Please enter 1 or 2 only.\n");
+    			printf("Your choice: ");
+    			scanf("%d", useSpecialRules);
+			}
     		validInput = 1;
 		} else {
 			printf("Select a valid input.\n");
@@ -140,7 +146,7 @@ void displayStart(int *numPlayers, int *useSpecialRules){
 void setupGame(int numPlayers, int useSpecialRules){
     printf("\nSetting up the game...\n");
 
-    if (numPlayers == 1) {
+    if (numPlayers == 2) {
         printf("Two players will be playing.\n");
     } else {
         printf("Three players will be playing.\n");
@@ -450,22 +456,24 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             printf("You cannot occupy the space you just erased. Please choose a different space.\n");
             validInput = 0;
         }
-        
-        if (validInput){
-            space = findSpacePointer(a1, a2, a3, a4, a5,
-                                     b1, b2, b3, b4, b5,
-                                     c1, c2, c3, c4, c5,
-                                     d1, d2, d3, d4, d5,
-                                     e1, e2, e3, e4, e5,
-                                     rowNum, colNum);
+		
+		if (validInput){
+			space = findSpacePointer(a1, a2, a3, a4, a5,
+                                 	 b1, b2, b3, b4, b5,
+                                 	 c1, c2, c3, c4, c5,
+                                 	 d1, d2, d3, d4, d5,
+                            	 	 e1, e2, e3, e4, e5,
+                                 	 rowNum, colNum);
 
             if (*space == 0){
-                validMove = 1;
+            	validMove = 1;
             } else {
-                printf("That space is already taken. Please try again.\n");
-            }
+					printf("That space is either yours or already taken. Please try again.\n");
+					validInput = 0;
+            	}
+        	}
+        	
         }
-    }
 
     return space;
 }
