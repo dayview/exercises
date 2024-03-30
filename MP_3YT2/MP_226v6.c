@@ -111,21 +111,30 @@ int *findSpacePointer(int *a1, int *a2, int *a3, int *a4, int *a5,
 }
 
 void displayStart(int *numPlayers, int *useSpecialRules){
-    printf("Welcome to Tic-Tac-Toe!\n\n");
-    printf("How many players will be playing?\n");
-    printf("---------------------------------\n");
-    printf("| Input the numbers of players: |\n");
-    printf("---------------------------------\n\n");
-    printf("Your choice: ");
-    scanf("%d", numPlayers);
-
-    printf("Would you like to play with special rules?\n");
-    printf("----------------------\n");
-    printf("| [1] Yes            |\n");
-    printf("| [2] No             |\n");
-    printf("----------------------\n\n");
-    printf("Your choice: ");
-    scanf("%d", useSpecialRules);
+	int validInput = 0;
+	
+	while (!validInput){
+    	printf("Welcome to Tic-Tac-Toe!\n\n");
+    	printf("How many players will be playing?\n");
+    	printf("---------------------------------\n");
+    	printf("| Input the numbers of players: |\n");
+    	printf("---------------------------------\n\n");
+    	printf("Your choice: ");
+    	scanf("%d", numPlayers);
+    
+    	if (*numPlayers == 2 || *numPlayers == 3){
+    	    printf("Would you like to play with special rules?\n");
+    		printf("----------------------\n");
+    		printf("| [1] Yes            |\n");
+    		printf("| [2] No             |\n");
+    		printf("----------------------\n\n");
+    		printf("Your choice: ");
+    		scanf("%d", useSpecialRules);
+    		validInput = 1;
+		} else {
+			printf("Select a valid input.\n");
+		}
+	}
 }
 
 void setupGame(int numPlayers, int useSpecialRules){
