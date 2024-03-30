@@ -3,7 +3,7 @@
 
 #define BOARD_SIZE 5
 
-void displayStart(int *nPlayersChoice, int *nSpecialChoice){
+void displayStart(int *numPlayers, int *useSpecialRules){
     printf("Welcome to Tic-Tac-Toe!\n\n");
     printf("How many players will be playing?\n");
     printf("----------------------\n");
@@ -11,7 +11,7 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
     printf("| [2] Three Players  |\n");
     printf("----------------------\n\n");
     printf("Your choice: ");
-    scanf("%d", nPlayersChoice);
+    scanf("%d", numPlayers);
 
     printf("Would you like to play with special rules?\n");
     printf("----------------------\n");
@@ -19,19 +19,19 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
     printf("| [2] No             |\n");
     printf("----------------------\n\n");
     printf("Your choice: ");
-    scanf("%d", nSpecialChoice);
+    scanf("%d", useSpecialRules);
 }
 
-void setupGame(int nPlayersChoice, int nSpecialChoice){
+void setupGame(int numPlayers, int useSpecialRules){
     printf("\nSetting up the game...\n");
 
-    if (nPlayersChoice == 1) {
+    if (numPlayers == 1) {
         printf("Two players will be playing.\n");
     } else {
         printf("Three players will be playing.\n");
     }
 
-    if (nSpecialChoice == 1) {
+    if (useSpecialRules == 1) {
         printf("Special rules will be used.\n");
     } else {
         printf("No special rules will be applied.\n");
@@ -70,7 +70,7 @@ void displayBoard(int *a1, int *a2, int *a3, int *a4, int *a5,
     printf("5  %c| %c| %c| %c| %c\n", getSymbol(*e1), getSymbol(*e2), getSymbol(*e3), getSymbol(*e4), getSymbol(*e5));
 }
 
-int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
+int getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             int *b1, int *b2, int *b3, int *b4, int *b5,
             int *c1, int *c2, int *c3, int *c4, int *c5,
             int *d1, int *d2, int *d3, int *d4, int *d5,
@@ -252,7 +252,6 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
         printf("--------------------------------------\n");
         printf("| [1] Erase a Row                    |\n");
         printf("| [2] Erase a Column                 |\n");
-        printf("| [3] Erase 4 Corners and Center    |\n");
         printf("--------------------------------------\n\n");
         printf("Your choice: ");
         scanf("%d", &option);
@@ -432,7 +431,7 @@ void updateBoard(int *space, int player){
 }
 
 int main(){
-    int nPlayersChoice, nSpecialChoice;;
+    int numPlayers, useSpecialRules;
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, 
         b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, 
         c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, 
@@ -440,10 +439,9 @@ int main(){
         e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
     int player = 1, winner = 0;
     int gameEnded = 0;
-    int eraseSpaceUsed = 0;
 
-    displayStart(&nPlayersChoice, &nSpecialChoice);
-    setupGame(nPlayersChoice, nSpecialChoice);
+    displayStart(&numPlayers, &useSpecialRules);
+    setupGame(numPlayers, useSpecialRules);
 
     while (!gameEnded){     
         displayBoard(&a1, &a2, &a3, &a4, &a5, 
@@ -451,12 +449,12 @@ int main(){
                      &c1, &c2, &c3, &c4, &c5, 
                      &d1, &d2, &d3, &d4, &d5, 
                      &e1, &e2, &e3, &e4, &e5);
-        int move = getMove(&a1, &a2, &a3, &a4, &a5, 
+        int move = getPlayerMove(&a1, &a2, &a3, &a4, &a5, 
                            &b1, &b2, &b3, &b4, &b5, 
                            &c1, &c2, &c3, &c4, &c5, 
                            &d1, &d2, &d3, &d4, &d5, 
                            &e1, &e2, &e3, &e4, &e5,
-                           player, &eraseSpaceUsed);
+                           player);
         updateBoard(&move, player);
         player = (player % nPlayersChoice) + 1;
 
