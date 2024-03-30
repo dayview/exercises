@@ -75,10 +75,10 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             int *c1, int *c2, int *c3, int *c4, int *c5,
             int *d1, int *d2, int *d3, int *d4, int *d5,
             int *e1, int *e2, int *e3, int *e4, int *e5,
-            int player, int *eraseSpaceUsed){
+            int player){
                 
     char row, col;
-    int rowNum, colNum, specialAbility;
+    int rowNum, colNum;
 
     while (1) {
         printf("Player %d, enter your move (e.g., A1, B3) or 0 for special ability: ", player);
