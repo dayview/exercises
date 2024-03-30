@@ -182,8 +182,11 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                           int *c1, int *c2, int *c3, int *c4, int *c5,
                           int *d1, int *d2, int *d3, int *d4, int *d5,
                           int *e1, int *e2, int *e3, int *e4, int *e5,
-                          int player, int *eraseSpaceUsed) {
+                          int player, int *eraseSpaceUsed){
+                          
     int choice, row, col;
+    int *space = NULL;
+    
     printf("Player %d, choose an ability:\n", player);
     printf("----------------------\n");
     printf("| [1] Erase a Space    |\n");
@@ -202,12 +205,12 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
         col = colChar - '0';
 
         if (row >= 1 && row <= BOARD_SIZE && col >= 1 && col <= BOARD_SIZE) {
-            int *space = findSpacePointer(a1, a2, a3, a4, a5,
-                                          b1, b2, b3, b4, b5,
-                                          c1, c2, c3, c4, c5,
-                                          d1, d2, d3, d4, d5,
-                                          e1, e2, e3, e4, e5,
-                                          row, col);
+            space = findSpacePointer(a1, a2, a3, a4, a5,
+                                      b1, b2, b3, b4, b5,
+                                      c1, c2, c3, c4, c5,
+                                      d1, d2, d3, d4, d5,
+                                      e1, e2, e3, e4, e5,
+                                      row, col);
 
             if (*space != 0 && *space != player) {
                 *space = 0;
@@ -218,17 +221,13 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              c1, c2, c3, c4, c5,
                              d1, d2, d3, d4, d5,
                              e1, e2, e3, e4, e5);
-                             
-                return findSpacePointer(a1, a2, a3, a4, a5,
-										b1, b2, b3, b4, b5,
-										c1, c2, c3, c4, c5,
-										d1, d2, d3, d4, d5,
-										e1, e2, e3, e4, e5, 3, 3);
             } else {
                 printf("Invalid space or your own space. Try again.\n");
+                space = NULL;
             }
         } else {
             printf("Invalid move. Please try again.\n");
+            space = NULL;
         }
     } else if (choice == 2 && !*eraseSpaceUsed) {
         int option;
@@ -236,6 +235,7 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
         printf("--------------------------------------\n");
         printf("| [1] Erase a Row                    |\n");
         printf("| [2] Erase a Column                 |\n");
+        printf("| [3] Erase a 4 Corners and Center   |\n");
         printf("--------------------------------------\n\n");
         printf("Your choice: ");
         scanf("%d", &option);
@@ -287,18 +287,16 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              c1, c2, c3, c4, c5,
                              d1, d2, d3, d4, d5,
                              e1, e2, e3, e4, e5);
-                return findSpacePointer(a1, a2, a3, a4, a5,
-										b1, b2, b3, b4, b5,
-										c1, c2, c3, c4, c5,
-										d1, d2, d3, d4, d5,
-										e1, e2, e3, e4, e5, 3, 3);
+                *eraseSpaceUsed = 1;
+                space = NULL;
             } else {
                 printf("Invalid row. Please try again.\n");
+                space = NULL;
             }
-        } else if (option == 2) {
+        } else if (option == 2){
             printf("Enter the column to erase (1 - 5): ");
             scanf("%d", &col);
-            if (col >= 1 && col <= BOARD_SIZE) {
+            if (col >= 1 && col <= BOARD_SIZE){
                 switch (col) {
                     case 1:
                         *a1 = 0;
@@ -342,23 +340,36 @@ int *handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              c1, c2, c3, c4, c5,
                              d1, d2, d3, d4, d5,
                              e1, e2, e3, e4, e5);
-                return findSpacePointer(a1, a2, a3, a4, a5,
-										b1, b2, b3, b4, b5,
-										c1, c2, c3, c4, c5,
-										d1, d2, d3, d4, d5,
-										e1, e2, e3, e4, e5, 3, 3);
+                *eraseSpaceUsed = 1;
+                space = NULL;
             } else {
                 printf("Invalid column. Please try again.\n");
+                space = NULL;
             }
+        } else if (option == 3){
+            *a1 = 0;
+            *a5 = 0;
+            *e1 = 0;
+            *e5 = 0;
+            *c3 = 0;
+            printf("Four corners and center erased successfully.\n");
+            displayBoard(a1, a2, a3, a4, a5,
+                         b1, b2, b3, b4, b5,
+                         c1, c2, c3, c4, c5,
+                         d1, d2, d3, d4, d5,
+                         e1, e2, e3, e4, e5);
+            *eraseSpaceUsed = 1;
+            space = NULL;
         } else {
             printf("Invalid option. Please try again.\n");
+            space = NULL;
         }
-        *eraseSpaceUsed = 1;
     } else {
         printf("Invalid choice or ability already used. Please try again.\n");
+        space = NULL;
     }
     
-    return NULL;
+    return space;
 }
 
 int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
