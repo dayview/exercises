@@ -409,6 +409,7 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
     int rowNum, colNum;
     int validMove = 0;
     int validInput = 1;
+    int *space = NULL;
 
     while (!validMove) {
         printf("Player %d, enter your move (e.g., A1, B3) or 00 for special ability: ", player);
@@ -421,7 +422,7 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
                                  d1, d2, d3, d4, d5,
                                  e1, e2, e3, e4, e5,
                                  player, eraseSpaceUsed, lastErasedRow, lastErasedCol);
-                                 return NULL;
+            return NULL;
         }
 
         if (rowChar >= 'a' && rowChar <= 'e') {
@@ -446,28 +447,27 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
         }
         
         if (validInput && rowNum == *lastErasedRow && colNum == *lastErasedCol){
-        	printf("You cannot occupy the space you just erased. Please choose a different space.\n");
-        	validInput = 0;
-		}
-
+            printf("You cannot occupy the space you just erased. Please choose a different space.\n");
+            validInput = 0;
+        }
+        
         if (validInput){
-            int *space = findSpacePointer(a1, a2, a3, a4, a5,
-                                          b1, b2, b3, b4, b5,
-                                          c1, c2, c3, c4, c5,
-                                          d1, d2, d3, d4, d5,
-                                          e1, e2, e3, e4, e5,
-                                          rowNum, colNum);
+            space = findSpacePointer(a1, a2, a3, a4, a5,
+                                     b1, b2, b3, b4, b5,
+                                     c1, c2, c3, c4, c5,
+                                     d1, d2, d3, d4, d5,
+                                     e1, e2, e3, e4, e5,
+                                     rowNum, colNum);
 
-            if (*space != 0){
-                printf("That space is already taken. Please try again.\n");
-            } else {
+            if (*space == 0){
                 validMove = 1;
-                return space;
+            } else {
+                printf("That space is already taken. Please try again.\n");
             }
         }
-        validInput = 1;
     }
-    return NULL;
+
+    return space;
 }
  
 int checkWin(int a1, int a2, int a3, int a4, int a5,
@@ -571,8 +571,12 @@ int main(){
                                  &e1, &e2, &e3, &e4, &e5, player, &eraseSpaceUsed, &lastErasedRow, &lastErasedCol);
         if (move != NULL) {
             *move = player;
-            player = (player % nPlayersChoice) + 1;
-            eraseSpaceUsed = 0;
+            if (eraseSpaceUsed) {
+                player = (player % nPlayersChoice) + 1;
+                eraseSpaceUsed = 0;
+            } else {
+                player = (player % nPlayersChoice) + 1;
+            }
         }
         winner = checkWin(a1, a2, a3, a4, a5, 
                         b1, b2, b3, b4, b5, 
