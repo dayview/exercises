@@ -113,10 +113,9 @@ int *findSpacePointer(int *a1, int *a2, int *a3, int *a4, int *a5,
 void displayStart(int *numPlayers, int *useSpecialRules){
     printf("Welcome to Tic-Tac-Toe!\n\n");
     printf("How many players will be playing?\n");
-    printf("----------------------\n");
-    printf("| [1] Two Players    |\n");
-    printf("| [2] Three Players  |\n");
-    printf("----------------------\n\n");
+    printf("---------------------------------\n");
+    printf("| Input the numbers of players: |\n");
+    printf("---------------------------------\n\n");
     printf("Your choice: ");
     scanf("%d", numPlayers);
 
@@ -165,16 +164,16 @@ void displayBoard(int *a1, int *a2, int *a3, int *a4, int *a5,
                 int *d1, int *d2, int *d3, int *d4, int *d5,
                 int *e1, int *e2, int *e3, int *e4, int *e5){
 
-    printf("\n     A   B   C   D   E\n");
-    printf("1 | %c | %c | %c | %c | %c |\n", getSymbol(*a1), getSymbol(*a2), getSymbol(*a3), getSymbol(*a4), getSymbol(*a5));
+    printf("\n     1   2   3   4   5\n");
+    printf("A | %c | %c | %c | %c | %c |\n", getSymbol(*a1), getSymbol(*a2), getSymbol(*a3), getSymbol(*a4), getSymbol(*a5));
     printf("   --------------------\n");
-    printf("2 | %c | %c | %c | %c | %c |\n", getSymbol(*b1), getSymbol(*b2), getSymbol(*b3), getSymbol(*b4), getSymbol(*b5));
+    printf("B | %c | %c | %c | %c | %c |\n", getSymbol(*b1), getSymbol(*b2), getSymbol(*b3), getSymbol(*b4), getSymbol(*b5));
     printf("   --------------------\n");
-    printf("3 | %c | %c | %c | %c | %c |\n", getSymbol(*c1), getSymbol(*c2), getSymbol(*c3), getSymbol(*c4), getSymbol(*c5));
+    printf("C | %c | %c | %c | %c | %c |\n", getSymbol(*c1), getSymbol(*c2), getSymbol(*c3), getSymbol(*c4), getSymbol(*c5));
     printf("   --------------------\n");
-    printf("4 | %c | %c | %c | %c | %c |\n", getSymbol(*d1), getSymbol(*d2), getSymbol(*d3), getSymbol(*d4), getSymbol(*d5));
+    printf("D | %c | %c | %c | %c | %c |\n", getSymbol(*d1), getSymbol(*d2), getSymbol(*d3), getSymbol(*d4), getSymbol(*d5));
     printf("   --------------------\n");
-    printf("5 | %c | %c | %c | %c | %c |\n", getSymbol(*e1), getSymbol(*e2), getSymbol(*e3), getSymbol(*e4), getSymbol(*e5));
+    printf("E | %c | %c | %c | %c | %c |\n", getSymbol(*e1), getSymbol(*e2), getSymbol(*e3), getSymbol(*e4), getSymbol(*e5));
     printf("   --------------------\n");
 }
 
@@ -488,6 +487,8 @@ int main(){
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
 
+    printf("test: %d\n", nPlayersChoice);
+
     while (!gameEnded){     
         displayBoard(&a1, &a2, &a3, &a4, &a5, 
                      &b1, &b2, &b3, &b4, &b5, 
@@ -510,12 +511,21 @@ int main(){
                           e1, e2, e3, e4, e5);
                             if (winner == -1){
                                 printf("It's a draw!\n");
+                                displayBoard(&a1, &a2, &a3, &a4, &a5, 
+                     						 &b1, &b2, &b3, &b4, &b5, 
+                     						 &c1, &c2, &c3, &c4, &c5, 
+                     						 &d1, &d2, &d3, &d4, &d5, 
+                     						 &e1, &e2, &e3, &e4, &e5);
                                 gameEnded = 1;
                             } else if (winner){
                                 printf("Player %d wins!\n", winner);
+                                displayBoard(&a1, &a2, &a3, &a4, &a5, 
+						                     &b1, &b2, &b3, &b4, &b5, 
+						                     &c1, &c2, &c3, &c4, &c5, 
+						                     &d1, &d2, &d3, &d4, &d5, 
+						                     &e1, &e2, &e3, &e4, &e5);
                                 gameEnded = 1;
                             }
-
     }
     return 0;
 }
