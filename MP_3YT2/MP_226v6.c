@@ -384,7 +384,6 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
     int validMove = 0;
     int validInput = 1;
 
-
     while (!validMove) {
         printf("Player %d, enter your move (e.g., A1, B3) or 00 for special ability: ", player);
         scanf(" %c%c", &rowChar, &colChar);
@@ -527,8 +526,6 @@ int main(){
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
 
-    printf("test: %d\n", nPlayersChoice);
-
     while (!gameEnded){     
         displayBoard(&a1, &a2, &a3, &a4, &a5, 
                      &b1, &b2, &b3, &b4, &b5, 
@@ -540,31 +537,37 @@ int main(){
                                  &c1, &c2, &c3, &c4, &c5, 
                                  &d1, &d2, &d3, &d4, &d5, 
                                  &e1, &e2, &e3, &e4, &e5, player, &eraseSpaceUsed);
-        updateBoard(move, player);
-        player = (player % nPlayersChoice) + 1;
-
-        winner = checkWin(a1, a2, a3, a4, a5, 
+                                 
+        if (move == NULL){
+        	winner = checkWin(a1, a2, a3, a4, a5, 
                           b1, b2, b3, b4, b5, 
                           c1, c2, c3, c4, c5, 
                           d1, d2, d3, d4, d5, 
                           e1, e2, e3, e4, e5);
-                            if (winner == -1){
-                                printf("It's a draw!\n");
-                                displayBoard(&a1, &a2, &a3, &a4, &a5, 
-                     						 &b1, &b2, &b3, &b4, &b5, 
-                     						 &c1, &c2, &c3, &c4, &c5, 
-                     						 &d1, &d2, &d3, &d4, &d5, 
-                     						 &e1, &e2, &e3, &e4, &e5);
-                                gameEnded = 1;
-                            } else if (winner){
-                                printf("Player %d wins!\n", winner);
-                                displayBoard(&a1, &a2, &a3, &a4, &a5, 
-						                     &b1, &b2, &b3, &b4, &b5, 
-						                     &c1, &c2, &c3, &c4, &c5, 
-						                     &d1, &d2, &d3, &d4, &d5, 
-						                     &e1, &e2, &e3, &e4, &e5);
-                                gameEnded = 1;
-                            }
+            if (winner == -1){
+                printf("It's a draw!\n");
+                displayBoard(&a1, &a2, &a3, &a4, &a5, 
+                     		 &b1, &b2, &b3, &b4, &b5, 
+                     		 &c1, &c2, &c3, &c4, &c5, 
+                     		 &d1, &d2, &d3, &d4, &d5, 
+                     		 &e1, &e2, &e3, &e4, &e5);
+                gameEnded = 1;
+            } else if (winner){
+                printf("Player %d wins!\n", winner);
+            	displayBoard(&a1, &a2, &a3, &a4, &a5, 
+						     &b1, &b2, &b3, &b4, &b5, 
+						     &c1, &c2, &c3, &c4, &c5, 
+						     &d1, &d2, &d3, &d4, &d5, 
+						     &e1, &e2, &e3, &e4, &e5);
+                gameEnded = 1;
+            	}
+        } else {
+        	updateBoard(move, player);
+        		
+        	player = (player % nPlayersChoice) + 1;
+        		
+        	eraseSpaceUsed = 0;
+		}
     }
     return 0;
 }
