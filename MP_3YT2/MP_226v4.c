@@ -431,7 +431,7 @@ void updateBoard(int *space, int player){
 }
 
 int main(){
-    int numPlayers, useSpecialRules;
+    int nPlayersChoice, nSpecialChoice;
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, 
         b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, 
         c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, 
@@ -439,9 +439,10 @@ int main(){
         e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
     int player = 1, winner = 0;
     int gameEnded = 0;
+    int eraseSpaceUsed = 0;
 
-    displayStart(&numPlayers, &useSpecialRules);
-    setupGame(numPlayers, useSpecialRules);
+    displayStart(&nPlayersChoice, &nSpecialChoice);
+    setupGame(nPlayersChoice, nSpecialChoice);
 
     while (!gameEnded){     
         displayBoard(&a1, &a2, &a3, &a4, &a5, 
@@ -455,7 +456,7 @@ int main(){
                                  &d1, &d2, &d3, &d4, &d5, 
                                  &e1, &e2, &e3, &e4, &e5, player);
         updateBoard(&move, player);
-        player = (player % (numPlayers - 1)) + 1;
+        player = (player % (nPlayersChoice - 1)) + 1;
 
         winner = checkWin(a1, a2, a3, a4, a5, 
                           b1, b2, b3, b4, b5, 

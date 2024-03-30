@@ -3,16 +3,15 @@
 
 #define BOARD_SIZE 5
 
-void displayStart(int *nPlayersChoice, int *nSpecialChoice){
+void displayStart(int *numPlayers, int *useSpecialRules){
     printf("Welcome to Tic-Tac-Toe!\n\n");
     printf("How many players will be playing?\n");
     printf("----------------------\n");
     printf("| [1] Two Players    |\n");
     printf("| [2] Three Players  |\n");
-    printf("| [3] Exit Game      |\n");
     printf("----------------------\n\n");
     printf("Your choice: ");
-    scanf("%d", nPlayersChoice);
+    scanf("%d", numPlayers);
 
     printf("Would you like to play with special rules?\n");
     printf("----------------------\n");
@@ -20,19 +19,19 @@ void displayStart(int *nPlayersChoice, int *nSpecialChoice){
     printf("| [2] No             |\n");
     printf("----------------------\n\n");
     printf("Your choice: ");
-    scanf("%d", nSpecialChoice);
+    scanf("%d", useSpecialRules);
 }
 
-void setupGame(int nPlayersChoice, int nSpecialChoice){
+void setupGame(int numPlayers, int useSpecialRules){
     printf("\nSetting up the game...\n");
 
-    if (nPlayersChoice == 1) {
+    if (numPlayers == 1) {
         printf("Two players will be playing.\n");
     } else {
         printf("Three players will be playing.\n");
     }
 
-    if (nSpecialChoice == 1) {
+    if (useSpecialRules == 1) {
         printf("Special rules will be used.\n");
     } else {
         printf("No special rules will be applied.\n");
@@ -61,28 +60,28 @@ void displayBoard(int *a1, int *a2, int *a3, int *a4, int *a5,
 
     printf("\n A | B | C | D | E\n");
     printf("1  %c| %c| %c| %c| %c\n", getSymbol(*a1), getSymbol(*a2), getSymbol(*a3), getSymbol(*a4), getSymbol(*a5));
-    printf(" 6 | 7 | 8 | 9 | 10\n");
+    printf("   6 | 7 | 8 | 9 | 10\n");
     printf("2  %c| %c| %c| %c| %c\n", getSymbol(*b1), getSymbol(*b2), getSymbol(*b3), getSymbol(*b4), getSymbol(*b5));
-    printf(" 11| 12| 13| 14| 15\n");
+    printf("   11| 12| 13| 14| 15\n");
     printf("3  %c| %c| %c| %c| %c\n", getSymbol(*c1), getSymbol(*c2), getSymbol(*c3), getSymbol(*c4), getSymbol(*c5));
-    printf(" 16| 17| 18| 19| 20\n");
+    printf("   16| 17| 18| 19| 20\n");
     printf("4  %c| %c| %c| %c| %c\n", getSymbol(*d1), getSymbol(*d2), getSymbol(*d3), getSymbol(*d4), getSymbol(*d5));
-    printf(" 21| 22| 23| 24| 25\n");
+    printf("   21| 22| 23| 24| 25\n");
     printf("5  %c| %c| %c| %c| %c\n", getSymbol(*e1), getSymbol(*e2), getSymbol(*e3), getSymbol(*e4), getSymbol(*e5));
 }
 
-int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
+int getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             int *b1, int *b2, int *b3, int *b4, int *b5,
             int *c1, int *c2, int *c3, int *c4, int *c5,
             int *d1, int *d2, int *d3, int *d4, int *d5,
             int *e1, int *e2, int *e3, int *e4, int *e5,
-            int player, int nPlayersChoice, int nSpecialChoice){
+            int player){
                 
     char row, col;
     int rowNum, colNum;
 
     while (1) {
-        printf("Player %d, enter your move (e.g., A1, B3): ", player);
+        printf("Player %d, enter your move (e.g., A1, B3) or 0 for special ability: ", player);
         scanf(" %c%c", &row, &col);
 
         if (row >= 'a' && row <= 'e') {
@@ -91,14 +90,12 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             rowNum = row - 'A' + 1;
         } else {
             printf("Invalid row. Please try again.\n");
-            continue;
         }
 
-        if (col >= '1' && col <= '5'){
+        if (rowNum > 0 && col >= '1' && col <= '5'){
             colNum = col - '0';
         } else {
             printf("Invalid move. Please try again.\n");
-            continue;
         }
 
         if (rowNum < 1 || rowNum > BOARD_SIZE || colNum < 1 || colNum > BOARD_SIZE){
@@ -181,6 +178,7 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
                             space = d5;
                             break;
                     }
+                    break;
                 case 5:
                     switch (colNum){
                         case 1:
@@ -209,6 +207,153 @@ int getMove(int *a1, int *a2, int *a3, int *a4, int *a5,
                 return (rowNum - 1) * BOARD_SIZE + colNum;
             }
         }
+    }
+}
+
+void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
+                          int *b1, int *b2, int *b3, int *b4, int *b5,
+                          int *c1, int *c2, int *c3, int *c4, int *c5,
+                          int *d1, int *d2, int *d3, int *d4, int *d5,
+                          int *e1, int *e2, int *e3, int *e4, int *e5,
+                          int player, int *eraseSpaceUsed) {
+    int choice, row, col;
+    printf("Player %d, choose an ability:\n", player);
+    printf("----------------------\n");
+    printf("| [1] Erase a Space    |\n");
+    printf("| [2] Erase 5 Spaces   |\n");
+    printf("----------------------\n\n");
+    printf("Your choice: ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        printf("Enter the row and column of the space you want to erase (e.g., A1, B3): ");
+        char rowChar, colChar;
+        scanf(" %c%c", &rowChar, &colChar);
+        row = rowChar - 'A' + 1;
+        col = colChar - '0';
+
+        if (row >= 1 && row <= BOARD_SIZE && col >= 1 && col <= BOARD_SIZE) {
+            int *space = NULL;
+            // Find the corresponding pointer to the space
+            // (similar logic as in the getMove function)
+
+            if (*space != 0 && *space != player) {
+                *space = 0;
+                printf("Space erased successfully.\n");
+            } else {
+                printf("Invalid space or your own space. Try again.\n");
+            }
+        } else {
+            printf("Invalid move. Please try again.\n");
+        }
+    } else if (choice == 2 && !*eraseSpaceUsed) {
+        int option;
+        printf("Choose an option:\n");
+        printf("--------------------------------------\n");
+        printf("| [1] Erase a Row                    |\n");
+        printf("| [2] Erase a Column                 |\n");
+        printf("--------------------------------------\n\n");
+        printf("Your choice: ");
+        scanf("%d", &option);
+
+        if (option == 1) {
+            printf("Enter the row to erase (1 - 5): ");
+            scanf("%d", &row);
+            if (row >= 1 && row <= BOARD_SIZE) {
+                // Erase the row
+                switch (row) {
+                    case 1:
+                        *a1 = 0;
+                        *a2 = 0;
+                        *a3 = 0;
+                        *a4 = 0;
+                        *a5 = 0;
+                        break;
+                    case 2:
+                        *b1 = 0;
+                        *b2 = 0;
+                        *b3 = 0;
+                        *b4 = 0;
+                        *b5 = 0;
+                        break;
+                    case 3:
+                        *c1 = 0;
+                        *c2 = 0;
+                        *c3 = 0;
+                        *c4 = 0;
+                        *c5 = 0;
+                        break;
+                    case 4:
+                        *d1 = 0;
+                        *d2 = 0;
+                        *d3 = 0;
+                        *d4 = 0;
+                        *d5 = 0;
+                        break;
+                    case 5:
+                        *e1 = 0;
+                        *e2 = 0;
+                        *e3 = 0;
+                        *e4 = 0;
+                        *e5 = 0;
+                        break;
+                }
+                printf("Row %d erased successfully.\n", row);
+            } else {
+                printf("Invalid row. Please try again.\n");
+            }
+        } else if (option == 2) {
+            printf("Enter the column to erase (1 - 5): ");
+            scanf("%d", &col);
+            if (col >= 1 && col <= BOARD_SIZE) {
+                // Erase the corresponding column
+                switch (col) {
+                    case 1:
+                        *a1 = 0;
+                        *b1 = 0;
+                        *c1 = 0;
+                        *d1 = 0;
+                        *e1 = 0;
+                        break;
+                    case 2:
+                        *a2 = 0;
+                        *b2 = 0;
+                        *c2 = 0;
+                        *d2 = 0;
+                        *e2 = 0;
+                        break;
+                    case 3:
+                        *a3 = 0;
+                        *b3 = 0;
+                        *c3 = 0;
+                        *d3 = 0;
+                        *e3 = 0;
+                        break;
+                    case 4:
+                        *a4 = 0;
+                        *b4 = 0;
+                        *c4 = 0;
+                        *d4 = 0;
+                        *e4 = 0;
+                        break;
+                    case 5:
+                        *a5 = 0;
+                        *b5 = 0;
+                        *c5 = 0;
+                        *d5 = 0;
+                        *e5 = 0;
+                        break;
+                }
+                printf("Column %d erased successfully.\n", col);
+            } else {
+                printf("Invalid column. Please try again.\n");
+            }
+        } else {
+            printf("Invalid option. Please try again.\n");
+        }
+        *eraseSpaceUsed = 1;
+    } else {
+        printf("Invalid choice or ability already used. Please try again.\n");
     }
 }
  
@@ -293,24 +438,25 @@ int main(){
         d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, 
         e1 = 0, e2 = 0, e3 = 0, e4 = 0, e5 = 0;
     int player = 1, winner = 0;
+    int gameEnded = 0;
+    int eraseSpaceUsed = 0;
 
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
 
-    while (!winner){     
+    while (!gameEnded){     
         displayBoard(&a1, &a2, &a3, &a4, &a5, 
                      &b1, &b2, &b3, &b4, &b5, 
                      &c1, &c2, &c3, &c4, &c5, 
                      &d1, &d2, &d3, &d4, &d5, 
                      &e1, &e2, &e3, &e4, &e5);
-        int move = getMove(&a1, &a2, &a3, &a4, &a5, 
-                           &b1, &b2, &b3, &b4, &b5, 
-                           &c1, &c2, &c3, &c4, &c5, 
-                           &d1, &d2, &d3, &d4, &d5, 
-                           &e1, &e2, &e3, &e4, &e5,
-                           player, nPlayersChoice, nSpecialChoice);
+        int move = getPlayerMove(&a1, &a2, &a3, &a4, &a5, 
+                                 &b1, &b2, &b3, &b4, &b5, 
+                                 &c1, &c2, &c3, &c4, &c5, 
+                                 &d1, &d2, &d3, &d4, &d5, 
+                                 &e1, &e2, &e3, &e4, &e5, player);
         updateBoard(&move, player);
-        player = (player % nPlayersChoice) + 1;
+        player = (player % (nPlayersChoice - 1)) + 1;
 
         winner = checkWin(a1, a2, a3, a4, a5, 
                           b1, b2, b3, b4, b5, 
@@ -319,8 +465,10 @@ int main(){
                           e1, e2, e3, e4, e5);
                             if (winner == -1){
                                 printf("It's a draw!\n");
+                                gameEnded = 1;
                             } else if (winner){
                                 printf("Player %d wins!\n", winner);
+                                gameEnded = 1;
                             }
     }
     return 0;
