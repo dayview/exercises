@@ -215,8 +215,7 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                           int *c1, int *c2, int *c3, int *c4, int *c5,
                           int *d1, int *d2, int *d3, int *d4, int *d5,
                           int *e1, int *e2, int *e3, int *e4, int *e5,
-                          int player, int *eraseSpaceUsed){
-    
+                          int player, int *eraseSpaceUsed) {
     int choice, row, col;
     printf("Player %d, choose an ability:\n", player);
     printf("----------------------\n");
@@ -226,19 +225,19 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
     printf("Your choice: ");
     scanf("%d", &choice);
 
-    if (choice == 1){
+    if (choice == 1) {
         printf("Enter the row and column of the space you want to erase (e.g., A1, B3): ");
         char rowChar, colChar;
         scanf(" %c%c", &rowChar, &colChar);
         row = rowChar - 'A' + 1;
         col = colChar - '0';
 
-        if (row >= 1 && row <= BOARD_SIZE && col >= 1 && col <= BOARD_SIZE){
+        if (row >= 1 && row <= BOARD_SIZE && col >= 1 && col <= BOARD_SIZE) {
             int *space = NULL;
             // Find the corresponding pointer to the space
             // (similar logic as in the getMove function)
 
-            if (*space != 0 && *space != player){
+            if (*space != 0 && *space != player) {
                 *space = 0;
                 printf("Space erased successfully.\n");
             } else {
@@ -247,23 +246,23 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
         } else {
             printf("Invalid move. Please try again.\n");
         }
-    } else if (choice == 2 && !*eraseSpaceUsed){
+    } else if (choice == 2 && !*eraseSpaceUsed) {
         int option;
         printf("Choose an option:\n");
         printf("--------------------------------------\n");
         printf("| [1] Erase a Row                    |\n");
         printf("| [2] Erase a Column                 |\n");
-        printf("| [3] Erase 4 Cornerns and Center    |\n");
+        printf("| [3] Erase 4 Corners and Center    |\n");
         printf("--------------------------------------\n\n");
         printf("Your choice: ");
         scanf("%d", &option);
 
-        if (option == 1){
+        if (option == 1) {
             printf("Enter the row to erase (1 - 5): ");
             scanf("%d", &row);
-            if (row >= 1 && row <= BOARD_SIZE){
+            if (row >= 1 && row <= BOARD_SIZE) {
                 // Erase the row
-                switch (row){
+                switch (row) {
                     case 1:
                         *a1 = 0;
                         *a2 = 0;
@@ -304,12 +303,12 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
             } else {
                 printf("Invalid row. Please try again.\n");
             }
-        } else if (option == 2){
+        } else if (option == 2) {
             printf("Enter the column to erase (1 - 5): ");
             scanf("%d", &col);
-            if (col >= 1 && col <= BOARD_SIZE){
+            if (col >= 1 && col <= BOARD_SIZE) {
                 // Erase the corresponding column
-                switch (col){
+                switch (col) {
                     case 1:
                         *a1 = 0;
                         *b1 = 0;
@@ -345,19 +344,11 @@ void handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                         *d5 = 0;
                         *e5 = 0;
                         break;
+                }
+                printf("Column %d erased successfully.\n", col);
+            } else {
+                printf("Invalid column. Please try again.\n");
             }
-            printf("Column %d erased successfully.\n", col);
-        } else {
-            printf("Invalid column. Please try again.\n");
-        } 
-    }
-    else if (option == 3){
-            *a1 = 0;
-            *a5 = 0;
-            *e1 = 0;
-            *e5 = 0;
-            *c3 = 0;
-            printf("Corners and center erased successfully.\n");
         } else {
             printf("Invalid option. Please try again.\n");
         }
