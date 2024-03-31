@@ -197,11 +197,10 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                           int *c1, int *c2, int *c3, int *c4, int *c5,
                           int *d1, int *d2, int *d3, int *d4, int *d5,
                           int *e1, int *e2, int *e3, int *e4, int *e5,
-                          int player, int *eraseSpaceUsed, int *lastErasedRow, int *lastErasedCol){
+                          int player, int *eraseSpaceUsed, int *lastErasedRow, int *lastErasedCol, int *specialAbilityUsed){
                           
     int choice, row, col;
     int *space = NULL;
-    int specialAbilityUsed = 0;
     
     printf("Player %d, choose an ability:\n", player);
     printf("----------------------\n");
@@ -240,7 +239,7 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              
                              *lastErasedRow = row;
                              *lastErasedCol = col;
-                             specialAbilityUsed = 1;
+                             *specialAbilityUsed = 1;
             } else {
                 printf("Invalid space or your own space. Try again.\n");
                 space = NULL;
@@ -311,7 +310,7 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              e1, e2, e3, e4, e5);
                 *eraseSpaceUsed = 1;
                 space = NULL;
-                specialAbilityUsed = 1;
+                *specialAbilityUsed = 1;
             } else {
                 printf("Invalid row. Please try again.\n");
                 space = NULL;
@@ -367,7 +366,7 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                              e1, e2, e3, e4, e5);
                 *eraseSpaceUsed = 1;
                 space = NULL;
-                specialAbilityUsed = 1;
+                *specialAbilityUsed = 1;
             } else {
                 printf("Invalid column. Please try again.\n");
                 space = NULL;
@@ -388,7 +387,7 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
                          *lastErasedCol = 0;
             *eraseSpaceUsed = 1;
             space = NULL;
-            specialAbilityUsed = 1;
+            *specialAbilityUsed = 1;
         } else {
             printf("Invalid option. Please try again.\n");
             space = NULL;
@@ -400,8 +399,8 @@ int handleSpecialAbility(int *a1, int *a2, int *a3, int *a4, int *a5,
 
     *lastErasedRow = row;
     *lastErasedCol = col;
-    
-    return specialAbilityUsed;
+
+    return *specialAbilityUsed;
 }
 
 int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
@@ -409,7 +408,7 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             int *c1, int *c2, int *c3, int *c4, int *c5,
             int *d1, int *d2, int *d3, int *d4, int *d5,
             int *e1, int *e2, int *e3, int *e4, int *e5,
-            int player, int *eraseSpaceUsed, int *lastErasedRow, int *lastErasedCol){
+            int player, int *eraseSpaceUsed, int *lastErasedRow, int *lastErasedCol, int *specialAbilityUsed){
                 
     char rowChar, colChar;
     int rowNum, colNum;
@@ -427,7 +426,7 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
                                  c1, c2, c3, c4, c5,
                                  d1, d2, d3, d4, d5,
                                  e1, e2, e3, e4, e5,
-                                 player, eraseSpaceUsed, lastErasedRow, lastErasedCol);
+                                 player, eraseSpaceUsed, lastErasedRow, lastErasedCol, specialAbilityUsed);
             return NULL;
         }
 
@@ -437,23 +436,31 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             rowNum = rowChar - 'A' + 1;
         } else {
             printf("Invalid row. Please try again.\n");
+            printf("first case\n");
             validInput = 0;
         }
+
+        printf("value of validInput: %d\n", validInput);
+        printf("value of rownum: %d\n", rowNum);
+        printf("value of colchar: %c\n", colChar);
 
         if (validInput && rowNum > 0 && colChar >= '1' && colChar <= '5'){
             colNum = colChar - '0';
         } else {
             printf("Invalid move. Please try again.\n");
+            printf("second case\n");
             validInput = 0;
         }
 
         if (validInput && (rowNum < 1 || rowNum > BOARD_SIZE || colNum < 1 || colNum > BOARD_SIZE)){
             printf("Invalid move. Please try again.\n");
+            printf("third case\n");
             validInput = 0;
         }
         
-        if (validInput && rowNum == *lastErasedRow && colNum == *lastErasedCol){
+        if (validInput && rowNum == *lastErasedRow && colNum == *lastErasedCol && *specialAbilityUsed == 1){
             printf("You cannot occupy the space you just erased. Please choose a different space.\n");
+            printf("fourth case\n");
             validInput = 0;
         }
 		
@@ -469,10 +476,11 @@ int *getPlayerMove(int *a1, int *a2, int *a3, int *a4, int *a5,
             	validMove = 1;
             } else {
 					printf("That space is either yours or already taken. Please try again.\n");
+                    printf("fifth case\n");
 					validInput = 0;
             	}
         	}
-        	
+        	validInput = 1;
         }
 
     return space;
@@ -562,6 +570,7 @@ int main(){
     int gameEnded = 0;
     int lastErasedRow = 0, lastErasedCol = 0;
     int eraseSpaceUsed = 0;
+    int specialAbilityUsed = 0;
 
     displayStart(&nPlayersChoice, &nSpecialChoice);
     setupGame(nPlayersChoice, nSpecialChoice);
@@ -576,7 +585,7 @@ int main(){
                                  &b1, &b2, &b3, &b4, &b5, 
                                  &c1, &c2, &c3, &c4, &c5, 
                                  &d1, &d2, &d3, &d4, &d5, 
-                                 &e1, &e2, &e3, &e4, &e5, player, &eraseSpaceUsed, &lastErasedRow, &lastErasedCol);
+                                 &e1, &e2, &e3, &e4, &e5, player, &eraseSpaceUsed, &lastErasedRow, &lastErasedCol, &specialAbilityUsed);
         if (move != NULL) {
             *move = player;
             if (eraseSpaceUsed) {
